@@ -47,7 +47,7 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
         const result = eval(calculatorInput);
         setCalculatorResult(result.toString());
       } catch (error) {
-        setCalculatorResult('错误');
+        setCalculatorResult(t("error"));
       }
     } else if (value === 'C') {
       setCalculatorInput('');
@@ -78,59 +78,59 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
   const features = [
     {
       id: 'calculator',
-      title: '计算器',
+      title: t('calculator'),
       icon: Calculator,
       color: 'text-blue-600',
-      description: '基础数学计算'
+      description: t('basicMathCalculations')
     },
     {
       id: 'clock',
-      title: '时钟',
+      title: t('clock'),
       icon: Clock,
       color: 'text-green-600',
-      description: '当前时间显示'
+      description: t('currentTimeDisplay')
     },
     {
       id: 'weather',
-      title: '天气',
+      title: t('weather'),
       icon: Thermometer,
       color: 'text-orange-600',
-      description: '天气信息查询'
+      description: t('weatherInfoQuery')
     },
     {
       id: 'navigation',
-      title: '导航',
+      title: t('navigation'),
       icon: Navigation,
       color: 'text-purple-600',
-      description: '地图导航功能'
+      description: t('mapNavigationFunction')
     },
     {
       id: 'notes',
-      title: '笔记',
+      title: t('notes'),
       icon: FileText,
       color: 'text-yellow-600',
-      description: '快速记录笔记'
+      description: t('quickNoteTaking')
     },
     {
       id: 'system',
-      title: '系统信息',
+      title: t('systemInfo'),
       icon: Info,
       color: 'text-gray-600',
-      description: '查看系统状态'
+      description: t('viewSystemStatus')
     },
     {
       id: 'settings',
-      title: '设置',
+      title: t('settings'),
       icon: Settings,
       color: 'text-indigo-600',
-      description: '系统设置选项'
+      description: t('systemSettingsOptions')
     },
     {
       id: 'help',
-      title: '帮助',
+      title: t('help'),
       icon: HelpCircle,
       color: 'text-pink-600',
-      description: '使用帮助文档'
+      description: t('useHelpDocumentation')
     }
   ];
 
@@ -145,7 +145,7 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
               <div className="text-right text-2xl font-bold">{calculatorResult || '0'}</div>
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {['C', '/', '*', '-', '7', '8', '9', '+', '4', '5', '6', '+', '1', '2', '3', '=', '0', '0', '.', '='].map((btn, index) => (
+              {['C', '/', '*', '-', '7', '8', '9', '+', '4', '5', '6', t('plus'), '1', '2', '3', t('equals'), '0', '0', '.', t('equals')].map((btn, index) => (
                 <Button
                   key={index}
                   variant={['C', '/', '*', '-', '+', '='].includes(btn) ? 'default' : 'outline'}
@@ -166,11 +166,11 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
               {new Date().toLocaleTimeString()}
             </div>
             <div className="text-xl text-gray-600">
-              {new Date().toLocaleDateString('zh-CN', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                weekday: 'long'
+              {new Date().toLocaleDateString(t("locale"), { 
+                year: "numeric", 
+                month: "long", 
+                day: "numeric",
+                weekday: "long"
               })}
             </div>
           </div>
@@ -181,25 +181,25 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
           <div className="space-y-4">
             <div className="text-center">
               <Thermometer className="h-16 w-16 mx-auto text-orange-500 mb-4" />
-              <h3 className="text-2xl font-bold">天气信息</h3>
-              <p className="text-gray-600">当前位置：北京市</p>
+              <h3 className="text-2xl font-bold">{t("weatherInfo")}</h3>
+              <p className="text-gray-600">{t("currentLocation")}: {t("beijing")}</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <Card>
                 <CardContent className="p-4 text-center">
                   <div className="text-3xl font-bold text-blue-600">22°C</div>
-                  <div className="text-sm text-gray-600">当前温度</div>
+                  <div className="text-sm text-gray-600">{t("currentTemperature")}</div>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4 text-center">
                   <div className="text-lg font-bold">晴朗</div>
-                  <div className="text-sm text-gray-600">天气状况</div>
+                  <div className="text-sm text-gray-600">{t("weatherCondition")}</div>
                 </CardContent>
               </Card>
             </div>
             <p className="text-sm text-gray-500 text-center">
-              * 这是模拟数据，实际使用需要接入天气API
+              * {t("weatherDisclaimer")}
             </p>
           </div>
         );
@@ -209,24 +209,24 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
           <div className="space-y-4">
             <div className="text-center">
               <Navigation className="h-16 w-16 mx-auto text-purple-500 mb-4" />
-              <h3 className="text-2xl font-bold">导航功能</h3>
+              <h3 className="text-2xl font-bold">{t("navigationFunction")}</h3>
             </div>
             <div className="space-y-3">
               <Button className="w-full" variant="outline">
                 <MapPin className="h-4 w-4 mr-2" />
-                打开地图导航
+                {t("openMapNavigation")}
               </Button>
               <Button className="w-full" variant="outline">
                 <Star className="h-4 w-4 mr-2" />
-                收藏的地点
+                {t("favoritePlaces")}
               </Button>
               <Button className="w-full" variant="outline">
                 <Clock className="h-4 w-4 mr-2" />
-                最近导航
+                {t("recentNavigation")}
               </Button>
             </div>
             <p className="text-sm text-gray-500 text-center">
-              * 导航功能需要集成第三方地图服务
+              * {t("navigationIntegrationDisclaimer")}
             </p>
           </div>
         );
@@ -235,23 +235,23 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
         return (
           <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-bold mb-2">快速笔记</h3>
+              <h3 className="text-lg font-bold mb-2">{t("quickNotes")}</h3>
               <Textarea
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
-                placeholder="输入您的笔记..."
+                placeholder={t("enterYourNotes")}
                 rows={3}
               />
               <Button onClick={saveNote} className="mt-2" disabled={!noteText.trim()}>
-                保存笔记
+                {t("saveNote")}
               </Button>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-2">已保存的笔记</h4>
+              <h4 className="font-semibold mb-2">{t("savedNotes")}</h4>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 {savedNotes.length === 0 ? (
-                  <p className="text-gray-500 text-sm">暂无笔记</p>
+                  <p className="text-gray-500 text-sm">{t("noNotesYet")}</p>
                 ) : (
                   savedNotes.map(note => (
                     <Card key={note.id}>
@@ -281,33 +281,33 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
       case 'system':
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">系统信息</h3>
+            <h3 className="text-lg font-bold">{t("systemInfo")}</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
                   <Battery className="h-5 w-5 mr-2 text-green-600" />
-                  <span>电池状态</span>
+                  <span>{t("batteryStatus")}</span>
                 </div>
                 <Badge variant="secondary">85%</Badge>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
                   <Wifi className="h-5 w-5 mr-2 text-blue-600" />
-                  <span>网络连接</span>
+                  <span>{t("networkConnection")}</span>
                 </div>
-                <Badge variant="secondary">已连接</Badge>
+                <Badge variant="secondary">{t("connected")}</Badge>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
                   <Volume2 className="h-5 w-5 mr-2 text-purple-600" />
-                  <span>音量</span>
+                  <span>{t("volume")}</span>
                 </div>
                 <Badge variant="secondary">75%</Badge>
               </div>
               <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
                   <Brightness4 className="h-5 w-5 mr-2 text-yellow-600" />
-                  <span>屏幕亮度</span>
+                  <span>{t("screenBrightness")}</span>
                 </div>
                 <Badge variant="secondary">60%</Badge>
               </div>
@@ -318,27 +318,27 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
       case 'settings':
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">系统设置</h3>
+            <h3 className="text-lg font-bold">{t("systemSettings")}</h3>
             <div className="space-y-2">
               <Button variant="outline" className="w-full justify-start">
                 <Volume2 className="h-4 w-4 mr-2" />
-                音频设置
+                {t("audioSettings")}
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Brightness4 className="h-4 w-4 mr-2" />
-                显示设置
+                {t("displaySettings")}
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Wifi className="h-4 w-4 mr-2" />
-                网络设置
+                {t("networkSettings")}
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Download className="h-4 w-4 mr-2" />
-                下载设置
+                {t("downloadSettings")}
               </Button>
               <Button variant="outline" className="w-full justify-start">
                 <Share2 className="h-4 w-4 mr-2" />
-                分享设置
+                {t("shareSettings")}
               </Button>
             </div>
           </div>
@@ -347,30 +347,30 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
       case 'help':
         return (
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">帮助与支持</h3>
+            <h3 className="text-lg font-bold">{t("helpAndSupport")}</h3>
             <div className="space-y-3">
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">快速入门</h4>
-                  <p className="text-sm text-gray-600">了解如何使用车载娱乐系统的基本功能</p>
+                  <h4 className="font-semibold mb-2">{t("quickStart")}</h4>
+                  <p className="text-sm text-gray-600">{t("quickStartDescription")}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">常见问题</h4>
-                  <p className="text-sm text-gray-600">查看常见问题的解决方案</p>
+                  <h4 className="font-semibold mb-2">{t("faq")}</h4>
+                  <p className="text-sm text-gray-600">{t("faqDescription")}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">联系支持</h4>
-                  <p className="text-sm text-gray-600">获取技术支持和帮助</p>
+                  <h4 className="font-semibold mb-2">{t("contactSupport")}</h4>
+                  <p className="text-sm text-gray-600">{t("contactSupportDescription")}</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-4">
-                  <h4 className="font-semibold mb-2">版本信息</h4>
-                  <p className="text-sm text-gray-600">车载娱乐系统 v1.0.0</p>
+                  <h4 className="font-semibold mb-2">{t("versionInfo")}</h4>
+                  <p className="text-sm text-gray-600">{t("carEntertainmentSystem")} v1.0.0</p>
                 </CardContent>
               </Card>
             </div>
@@ -386,7 +386,7 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <Card className="w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle className="text-xl font-bold">更多功能</CardTitle>
+          <CardTitle className="text-xl font-bold">{t('moreFeatures')}</CardTitle>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="h-4 w-4" />
           </Button>
@@ -394,7 +394,7 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
         <CardContent>
           {!activeFeature ? (
             <div>
-              <p className="text-gray-600 mb-6">选择您需要的功能：</p>
+              <p className="text-gray-600 mb-6">{t("selectFeature")}</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {features.map(feature => {
                   const IconComponent = feature.icon;
@@ -423,7 +423,7 @@ const MoreFeaturesModal = ({ isOpen, onClose }) => {
                   onClick={() => setActiveFeature(null)}
                   className="mr-2"
                 >
-                  ← 返回
+                  ← {t("back")}
                 </Button>
                 <h3 className="text-lg font-bold">
                   {features.find(f => f.id === activeFeature)?.title}

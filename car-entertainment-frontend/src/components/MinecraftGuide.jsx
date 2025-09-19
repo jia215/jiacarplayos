@@ -12,7 +12,7 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-xl font-bold flex items-center">
             <Gamepad2 className="h-6 w-6 mr-2" />
-            Minecraft 访问指南
+            {t("minecraftGuide")}
           </CardTitle>
           <Button variant="ghost" size="sm" onClick={onClose}>
             <X className="h-4 w-4" />
@@ -21,10 +21,9 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
         <CardContent className="space-y-6">
           {/* 概述 */}
           <div className="bg-blue-50 p-4 rounded-lg">
-            <h3 className="font-semibold text-blue-800 mb-2">概述</h3>
+            <h3 className="font-semibold text-blue-800 mb-2">{t("overview")}</h3>
             <p className="text-blue-700">
-              通过cpolar内网穿透服务，您可以在美国访问位于中国的Minecraft服务器，实现跨地域游戏体验。
-              本指南将详细说明如何配置和连接。
+              {t("minecraftOverviewDescription")}
             </p>
           </div>
 
@@ -33,30 +32,30 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
             <CardHeader>
               <CardTitle className="flex items-center text-lg">
                 <Server className="h-5 w-5 mr-2" />
-                服务器端配置（中国）
+                {t("serverConfigurationChina")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
-                <h4 className="font-semibold">1. 确保Minecraft服务器运行</h4>
+                <h4 className="font-semibold">1. {t("ensureMinecraftServerRunning")}</h4>
                 <div className="bg-gray-100 p-3 rounded font-mono text-sm">
-                  <p>默认端口：25565</p>
-                  <p>确保服务器配置文件中 server-ip= 为空或设置为 0.0.0.0</p>
+                  <p>{t("defaultPort")}: 25565</p>
+                  <p>{t("ensureServerConfig")}</p>
                 </div>
                 
-                <h4 className="font-semibold">2. 配置cpolar隧道</h4>
+                <h4 className="font-semibold">2. {t("configureCpolarTunnel")}</h4>
                 <div className="bg-gray-100 p-3 rounded font-mono text-sm">
                   <p>cpolar tcp 25565</p>
                 </div>
                 <p className="text-sm text-gray-600">
-                  执行后，cpolar会分配一个公网地址和端口，例如：tcp://xxx.cpolar.io:12345
+                  {t("cpolarTunnelDescription")}
                 </p>
 
-                <h4 className="font-semibold">3. 防火墙设置</h4>
+                <h4 className="font-semibold">3. {t("firewallSettings")}</h4>
                 <ul className="list-disc list-inside text-sm space-y-1">
-                  <li>确保Windows防火墙允许Minecraft服务器通过</li>
-                  <li>允许端口25565的入站连接</li>
-                  <li>如果使用路由器，可能需要端口转发设置</li>
+                  <li>{t("allowMinecraftThroughFirewall")}</li>
+                  <li>{t("allowPort25565")}</li>
+                  <li>{t("portForwardingNeeded")}</li>
                 </ul>
               </div>
             </CardContent>
@@ -67,26 +66,26 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
             <CardHeader>
               <CardTitle className="flex items-center text-lg">
                 <Globe className="h-5 w-5 mr-2" />
-                客户端连接（美国）
+                {t("clientConnectionUSA")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3">
-                <h4 className="font-semibold">1. 获取连接信息</h4>
-                <p className="text-sm">从cpolar获得的地址格式：tcp://xxx.cpolar.io:12345</p>
+                <h4 className="font-semibold">1. {t("getConnectionInfo")}</h4>
+                <p className="text-sm">{t("cpolarAddressFormat")}</p>
                 
-                <h4 className="font-semibold">2. 在Minecraft中添加服务器</h4>
+                <h4 className="font-semibold">2. {t("addServerInMinecraft")}</h4>
                 <ol className="list-decimal list-inside text-sm space-y-1">
-                  <li>打开Minecraft客户端</li>
-                  <li>选择"多人游戏"</li>
-                  <li>点击"添加服务器"</li>
-                  <li>服务器名称：自定义名称</li>
-                  <li>服务器地址：xxx.cpolar.io:12345（去掉tcp://前缀）</li>
-                  <li>点击"完成"</li>
+                  <li>{t("openMinecraftClient")}</li>
+                  <li>{t("selectMultiplayer")}</li>
+                  <li>{t("clickAddServer")}</li>
+                  <li>{t("serverNameCustom")}</li>
+                  <li>{t("serverAddressCpolar")}: xxx.cpolar.io:12345 ({t("removeTcpPrefix")})</li>
+                  <li>{t("clickDone")}</li>
                 </ol>
 
-                <h4 className="font-semibold">3. 连接服务器</h4>
-                <p className="text-sm">在服务器列表中选择刚添加的服务器，点击"加入服务器"</p>
+                <h4 className="font-semibold">3. {t("connectToServer")}</h4>
+                <p className="text-sm">{t("selectAndJoinServer")}</p>
               </div>
             </CardContent>
           </Card>
@@ -96,25 +95,25 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
             <CardHeader>
               <CardTitle className="flex items-center text-lg">
                 <Settings className="h-5 w-5 mr-2" />
-                性能优化建议
+                {t("performanceOptimization")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-semibold mb-2">网络优化</h4>
+                  <h4 className="font-semibold mb-2">{t("networkOptimization")}</h4>
                   <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>使用有线网络连接</li>
-                    <li>关闭其他占用带宽的应用</li>
-                    <li>选择网络状况良好的时间段</li>
+                    <li>{t("useWiredNetwork")}</li>
+                    <li>{t("closeOtherApps")}</li>
+                    <li>{t("chooseGoodNetworkTime")}</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">游戏设置</h4>
+                  <h4 className="font-semibold mb-2">{t("gameSettings")}</h4>
                   <ul className="list-disc list-inside text-sm space-y-1">
-                    <li>降低渲染距离</li>
-                    <li>关闭不必要的视觉效果</li>
-                    <li>使用较低的图形设置</li>
+                    <li>{t("lowerRenderDistance")}</li>
+                    <li>{t("disableUnnecessaryVisualEffects")}</li>
+                    <li>{t("useLowerGraphicsSettings")}</li>
                   </ul>
                 </div>
               </div>
@@ -126,17 +125,17 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
             <CardHeader>
               <CardTitle className="flex items-center text-lg">
                 <Shield className="h-5 w-5 mr-2" />
-                注意事项
+                {t("precautions")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="bg-yellow-50 p-4 rounded-lg">
                 <ul className="list-disc list-inside text-sm space-y-2 text-yellow-800">
-                  <li><strong>延迟问题：</strong>跨国连接会有较高延迟（通常200-400ms），可能影响游戏体验</li>
-                  <li><strong>稳定性：</strong>网络连接可能不如本地稳定，建议定期保存游戏进度</li>
-                  <li><strong>带宽消耗：</strong>长时间游戏会消耗较多网络流量</li>
-                  <li><strong>时区差异：</strong>注意中美时区差异，合理安排游戏时间</li>
-                  <li><strong>安全性：</strong>cpolar隧道是公开的，建议设置服务器白名单</li>
+                  <li><strong>{t("latencyIssues")}:</strong> {t("latencyDescription")}</li>
+                  <li><strong>{t("stability")}:</strong> {t("stabilityDescription")}</li>
+                  <li><strong>{t("bandwidthConsumption")}:</strong> {t("bandwidthDescription")}</li>
+                  <li><strong>{t("timezoneDifferences")}:</strong> {t("timezoneDescription")}</li>
+                  <li><strong>{t("security")}:</strong> {t("securityDescription")}</li>
                 </ul>
               </div>
             </CardContent>
@@ -145,24 +144,24 @@ const MinecraftGuide = ({ isOpen, onClose }) => {
           {/* 故障排除 */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">常见问题排除</CardTitle>
+              <CardTitle className="text-lg">{t("troubleshooting")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-semibold">无法连接服务器</h4>
+                  <h4 className="font-semibold">{t("cannotConnectToServer")}</h4>
                   <ul className="list-disc list-inside text-sm space-y-1 ml-4">
-                    <li>检查cpolar隧道是否正常运行</li>
-                    <li>确认服务器地址和端口正确</li>
-                    <li>检查Minecraft服务器是否启动</li>
+                    <li>{t("checkCpolarTunnel")}</li>
+                    <li>{t("confirmServerAddressPort")}</li>
+                    <li>{t("checkMinecraftServerStatus")}</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold">连接频繁断开</h4>
+                  <h4 className="font-semibold">{t("frequentDisconnections")}</h4>
                   <ul className="list-disc list-inside text-sm space-y-1 ml-4">
-                    <li>检查网络连接稳定性</li>
-                    <li>尝试重启cpolar客户端</li>
-                    <li>调整Minecraft客户端网络设置</li>
+                    <li>{t("checkNetworkStability")}</li>
+                    <li>{t("tryRestartCpolarClient")}</li>
+                    <li>{t("adjustMinecraftNetworkSettings")}</li>
                   </ul>
                 </div>
               </div>
